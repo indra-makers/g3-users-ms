@@ -1,7 +1,6 @@
 package com.co.indra.coinmarketcap.users.repositories;
 
 import com.co.indra.coinmarketcap.users.model.MembershipType;
-import com.co.indra.coinmarketcap.users.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,20 +8,19 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-
-class UserRowMapper implements RowMapper<User> {
+class MembershipRowMapper implements RowMapper<MembershipType> {
     @Override
-    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-        User user = new User();
-        user.setUserId(rs.getLong("userId"));
-        user.setName(rs.getString("name"));
-        user.setMail(rs.getString("mail"));
-        return user;
+    public MembershipType mapRow(ResultSet rs, int rowNum) throws SQLException {
+        MembershipType membershipType = new MembershipType();
+        membershipType.setIdMembership(rs.getLong("idMembership"));
+        membershipType.setType(rs.getString("type"));
+        return membershipType;
     }
 }
 @Repository
-public class UserRepository {
+public class MembershipTypeRepository {
     @Autowired
     private JdbcTemplate template;
 }

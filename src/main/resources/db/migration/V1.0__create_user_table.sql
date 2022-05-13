@@ -1,8 +1,6 @@
 create table public.tb_membership_type(
     membership_id serial primary key,
-    premium boolean default false,
-    basic boolean default false,
-    free boolean default false
+    type varchar (15) NOT NULL
 );
 create table public.tb_user(
     id_user serial primary key,

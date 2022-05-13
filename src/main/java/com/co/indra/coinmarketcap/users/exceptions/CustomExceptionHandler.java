@@ -21,16 +21,16 @@ public class CustomExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-    @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     public ErrorResponse handleNotFoundException(ChangeSetPersister.NotFoundException exception) {
-        return new ErrorResponse("BAD_PARAMETERS", exception.getMessage());
+        return new ErrorResponse("NOT_FOUND", exception.getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorResponse handleNotFoundException(MethodArgumentNotValidException exception) {
-        return new ErrorResponse("NOT_FOUND", exception.getMessage());
+        return new ErrorResponse("BAD_REQUEST", exception.getMessage());
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
