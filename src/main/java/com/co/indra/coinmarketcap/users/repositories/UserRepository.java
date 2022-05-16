@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
 
 class UserRowMapper implements RowMapper<User> {
@@ -25,4 +28,23 @@ class UserRowMapper implements RowMapper<User> {
 public class UserRepository {
     @Autowired
     private JdbcTemplate template;
+
+    public void createUser (User user) {
+        Date date = new Date();
+
+        template.update("INSERT INTO tbl_users(name, mail) values(?,?)",
+            user.getMail(), new Timestamp(date.getTime()));
+    }
+    public List<User> findByLocationId(int id_user) {
+        return template.query(
+                "SELECT id_user, name, mail FROM tbl_users WHERE id_user=?",
+                new UserRowMapper() ,
+                id_user);
+    }
+    public List<User> findByUserMail(String name) {
+        return template.query(
+                "SELECT id_user, name, mail, updated_at FROM tbl_users WHERE mail=?",
+                new UserRowMapper() ,
+                name);
+    }
 }

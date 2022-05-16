@@ -2,8 +2,7 @@ package com.co.indra.coinmarketcap.users.config;
 
 public enum ErrorCodes {
 
-    USER("", "001");
-
+    USER("User with this mail already exist", "001");
     String message;
     String code;
 
@@ -16,15 +15,15 @@ public enum ErrorCodes {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    //public void setMessage(String message) {
+       // this.message = message;
     }
 
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+   // public void setCode(String code) {
+      //  this.code = code;
     }
 }
