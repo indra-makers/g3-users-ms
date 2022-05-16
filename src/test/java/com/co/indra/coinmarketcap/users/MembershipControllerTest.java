@@ -52,4 +52,3 @@ public class MembershipControllerTest {
         Assertions.assertEquals(3, users.size());
     }
 }
-

@@ -32,7 +32,7 @@ public class UserRepository {
 
     public void createUser (User user) {
         template.update("INSERT INTO tbl_users(name, mail, membership_id) values(?,?,?)",
-            user.getName(),  user.getMail(), user.getIdMembership());
+                user.getName(),  user.getMail(), user.getIdMembership());
     }
 
     public List<User> findByMail(String name) {
@@ -42,3 +42,4 @@ public class UserRepository {
                 name);
     }
 }
+

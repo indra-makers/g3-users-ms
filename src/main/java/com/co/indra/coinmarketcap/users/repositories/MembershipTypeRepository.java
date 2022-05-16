@@ -31,3 +31,4 @@ public class MembershipTypeRepository {
                 new MembershipRowMapper());
     }
 }
+
