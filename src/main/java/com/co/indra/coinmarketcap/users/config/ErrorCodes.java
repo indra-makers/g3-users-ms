@@ -19,5 +19,4 @@ public enum ErrorCodes {
         return code;
     }
 
-
 }
