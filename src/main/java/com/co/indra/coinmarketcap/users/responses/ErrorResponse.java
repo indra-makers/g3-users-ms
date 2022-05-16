@@ -1,4 +1,4 @@
-package com.co.indra.coinmarketcap.users.model.responses;
+package com.co.indra.coinmarketcap.users.responses;
 
 public class ErrorResponse {
 

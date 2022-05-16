@@ -18,9 +18,10 @@ class UserRowMapper implements RowMapper<User> {
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         User user = new User();
-        user.setUserId(rs.getLong("userId"));
+        user.setUserId(rs.getLong("id_user"));
         user.setName(rs.getString("name"));
         user.setMail(rs.getString("mail"));
+        user.setIdMembership(rs.getLong("membership_id"));
         return user;
     }
 }
@@ -30,20 +31,13 @@ public class UserRepository {
     private JdbcTemplate template;
 
     public void createUser (User user) {
-        Date date = new Date();
+        template.update("INSERT INTO tbl_users(name, mail, membership_id) values(?,?,?)",
+            user.getName(),  user.getMail(), user.getIdMembership());
+    }
 
-        template.update("INSERT INTO tbl_users(name, mail) values(?,?)",
-            user.getMail(), new Timestamp(date.getTime()));
-    }
-    public List<User> findByLocationId(int id_user) {
+    public List<User> findByMail(String name) {
         return template.query(
-                "SELECT id_user, name, mail FROM tbl_users WHERE id_user=?",
-                new UserRowMapper() ,
-                id_user);
-    }
-    public List<User> findByUserMail(String name) {
-        return template.query(
-                "SELECT id_user, name, mail, updated_at FROM tbl_users WHERE mail=?",
+                "SELECT id_user, name, mail, membership_id FROM tbl_users WHERE mail=?",
                 new UserRowMapper() ,
                 name);
     }

@@ -1,6 +1,7 @@
 package com.co.indra.coinmarketcap.users.services;
 
 import com.co.indra.coinmarketcap.users.config.ErrorCodes;
+import com.co.indra.coinmarketcap.users.exceptions.BusinessExceptions;
 import com.co.indra.coinmarketcap.users.model.User;
 import com.co.indra.coinmarketcap.users.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,12 @@ public class UserService {
 
     public void createUser(User user) {
 
-        List<User> userByMail = userRepository.findByUserMail(user.getMail());
+        List<User> userByMail = userRepository.findByMail(user.getMail());
 
         if (!userByMail.isEmpty()) {
-            throw new BusinessException(ErrorCodes.USER);
+            throw new BusinessExceptions(ErrorCodes.USER);
         }
 
-        userRepository.save(user);
+        userRepository.createUser(user);
     }
 }

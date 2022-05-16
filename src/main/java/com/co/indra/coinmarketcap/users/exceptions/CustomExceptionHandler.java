@@ -1,6 +1,6 @@
 package com.co.indra.coinmarketcap.users.exceptions;
 
-import com.co.indra.coinmarketcap.users.model.responses.ErrorResponse;
+import com.co.indra.coinmarketcap.users.responses.ErrorResponse;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;

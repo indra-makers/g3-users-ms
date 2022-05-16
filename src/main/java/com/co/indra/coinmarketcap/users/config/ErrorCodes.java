@@ -17,7 +17,7 @@ public enum ErrorCodes {
 
     //public void setMessage(String message) {
        // this.message = message;
-    }
+    //}
 
     public String getCode() {
         return code;
@@ -25,5 +25,5 @@ public enum ErrorCodes {
 
    // public void setCode(String code) {
       //  this.code = code;
-    }
+    //}
 }

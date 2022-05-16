@@ -1,24 +1,24 @@
 package com.co.indra.coinmarketcap.users.controllers;
 
-
 import com.co.indra.coinmarketcap.users.config.Routes;
+import com.co.indra.coinmarketcap.users.model.MembershipType;
 import com.co.indra.coinmarketcap.users.model.User;
+import com.co.indra.coinmarketcap.users.services.MembershipTypeService;
 import com.co.indra.coinmarketcap.users.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(Routes.USERS_PATH)
-public class UserController {
+@RequestMapping(Routes.MEMBERSHIP_PATH)
+public class MembershipTypeController {
     @Autowired
-    private UserService userService;
+    private MembershipTypeService membershipTypeService;
 
 
-    @PostMapping
-    public void create(@RequestBody User user) {
-        userService.createUser(user);
+    @GetMapping
+    public List<MembershipType> getMembershipByUser() {
+        return membershipTypeService.getMembership();
     }
 }
