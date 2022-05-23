@@ -18,7 +18,7 @@ class UserRowMapper implements RowMapper<User> {
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         User user = new User();
-        user.setUserId(rs.getLong("id_user"));
+        user.setUserId(rs.getInt("id_user"));
         user.setName(rs.getString("name"));
         user.setMail(rs.getString("mail"));
         user.setIdMembership(rs.getLong("membership_id"));
@@ -40,6 +40,13 @@ public class UserRepository {
                 "SELECT id_user, name, mail, membership_id FROM tbl_users WHERE mail=?",
                 new UserRowMapper() ,
                 name);
+    }
+
+    public List<User> findUserById(int idUser) {
+        return template.query(
+                "SELECT id_user, name, mail, membership_id FROM tbl_users WHERE id_user=?",
+                new UserRowMapper() ,
+                idUser);
     }
 }
 

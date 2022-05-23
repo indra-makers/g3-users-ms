@@ -16,7 +16,6 @@ public class MembershipTypeController {
     @Autowired
     private MembershipTypeService membershipTypeService;
 
-
     @GetMapping
     public List<MembershipType> getMembershipByUser() {
         return membershipTypeService.getMembership();

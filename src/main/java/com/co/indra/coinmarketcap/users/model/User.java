@@ -3,16 +3,16 @@ package com.co.indra.coinmarketcap.users.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private Long userId;
+    private int userId;
     private String name;
     private String mail;
     private Long idMembership;
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -40,7 +40,7 @@ public class User implements Serializable {
         this.idMembership = idMembership;
     }
 
-    public User(Long userId, String name, String mail, Long idMembership) {
+    public User(int userId, String name, String mail, Long idMembership) {
         this.userId = userId;
         this.name = name;
         this.mail = mail;

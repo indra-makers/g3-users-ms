@@ -16,9 +16,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @PostMapping
     public void create(@RequestBody User user) {
         userService.createUser(user);
+    }
+
+    @GetMapping(Routes.USER_PATH_PARAM)
+    public List<User> getUser(@PathVariable("idUser") int idUser){
+        return userService.getUser(idUser);
     }
 }
