@@ -2,7 +2,8 @@ package com.co.indra.coinmarketcap.users.config;
 
 public enum ErrorCodes {
 
-    USER("User with this mail already exist", "001");
+    USER("USER WITH THIS MAIL ALREADY EXIST", "001"),
+    USER_NOT_FOUND("THERE IS NOT USER BY THAT ID", "002");
     String message;
     String code;
 

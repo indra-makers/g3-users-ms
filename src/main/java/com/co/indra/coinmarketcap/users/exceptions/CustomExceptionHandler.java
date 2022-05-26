@@ -22,7 +22,7 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     @ExceptionHandler(NotFoundException.class)
-    public ErrorResponse handleNotFoundException(ChangeSetPersister.NotFoundException exception) {
+    public ErrorResponse handleNotFoundException(NotFoundException exception) {
         return new ErrorResponse("NOT_FOUND", exception.getMessage());
     }
 

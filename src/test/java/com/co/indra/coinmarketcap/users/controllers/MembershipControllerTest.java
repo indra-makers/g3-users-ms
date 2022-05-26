@@ -1,4 +1,4 @@
-package com.co.indra.coinmarketcap.users;
+package com.co.indra.coinmarketcap.users.controllers;
 
 import com.co.indra.coinmarketcap.users.config.Routes;
 import com.co.indra.coinmarketcap.users.model.MembershipType;
@@ -40,7 +40,7 @@ public class MembershipControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void getMembershio() throws Exception {
+    public void getMembership() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .get(Routes.MEMBERSHIP_PATH)
                 .contentType(MediaType.APPLICATION_JSON);

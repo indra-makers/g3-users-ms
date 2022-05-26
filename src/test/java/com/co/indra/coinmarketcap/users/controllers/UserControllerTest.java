@@ -1,4 +1,4 @@
-package com.co.indra.coinmarketcap.users;
+package com.co.indra.coinmarketcap.users.controllers;
 
 import com.co.indra.coinmarketcap.users.config.Routes;
 import com.co.indra.coinmarketcap.users.model.User;
@@ -65,7 +65,7 @@ public class UserControllerTest {
                 .post(Routes.USERS_PATH)
                 .content("{\n" +
                         "    \"name\":\"yosoyyo\",\n" +
-                        "    \"mail\":\"test_mail\",\n" +
+                        "    \"mail\":\"test_usermail\",\n" +
                         "    \"idMembership\":\"2\"  \n" +
                         "}").contentType(MediaType.APPLICATION_JSON);
 
@@ -75,10 +75,36 @@ public class UserControllerTest {
         String textResponse = response.getContentAsString();
         ErrorResponse error = objectMapper.readValue(textResponse, ErrorResponse.class);
 
-
-
         Assertions.assertEquals("001", error.getCode());
-        Assertions.assertEquals("User with this mail already exist", error.getMessage());
+        Assertions.assertEquals("USER WITH THIS MAIL ALREADY EXIST", error.getMessage());
+    }
 
+    @Test
+    @Sql("/testdata/create_user.sql")
+    public void getUserById() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .get(Routes.USERS_PATH+Routes.USER_PATH_PARAM,666).contentType(MediaType.APPLICATION_JSON);
+
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+        Assertions.assertEquals(200, response.getStatus());
+
+        User[] users = objectMapper.readValue(response.getContentAsString(), User[].class);
+        Assertions.assertEquals(1, users.length);
+        Assertions.assertEquals("Test_username", users[0].getName());
+    }
+
+    @Test
+    public void getNoUserById() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .get(Routes.USERS_PATH+Routes.USER_PATH_PARAM,666).contentType(MediaType.APPLICATION_JSON);
+
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+        Assertions.assertEquals(404, response.getStatus());
+
+        String textResponse = response.getContentAsString();
+        ErrorResponse error = objectMapper.readValue(textResponse, ErrorResponse.class);
+
+        Assertions.assertEquals("NOT_FOUND", error.getCode());
+        Assertions.assertEquals("THERE IS NOT USER BY THAT ID", error.getMessage());
     }
 }
