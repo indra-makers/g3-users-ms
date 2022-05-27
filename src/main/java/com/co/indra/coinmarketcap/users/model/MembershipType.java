@@ -18,8 +18,8 @@ public class MembershipType implements Serializable {
         return membershipId;
     }
 
-    public void setMembershipId(Long membership_id) {
-        this.membershipId = membership_id;
+    public void setMembershipId(Long membershipId) {
+        this.membershipId = membershipId;
     }
 
     public String getType() {
