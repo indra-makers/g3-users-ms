@@ -3,15 +3,23 @@ package com.co.indra.coinmarketcap.users.model;
 import java.io.Serializable;
 
 public class MembershipType implements Serializable {
-    private Long membership_id;
+    private Long membershipId;
     private String type;
 
-    public Long getMembership_id() {
-        return membership_id;
+    public MembershipType(Long membershipId, String type) {
+        this.membershipId = membershipId;
+        this.type = type;
     }
 
-    public void setMembership_id(Long membership_id) {
-        this.membership_id = membership_id;
+    public MembershipType() {
+    }
+
+    public Long getMembershipId() {
+        return membershipId;
+    }
+
+    public void setMembershipId(Long membershipId) {
+        this.membershipId = membershipId;
     }
 
     public String getType() {
@@ -22,8 +30,4 @@ public class MembershipType implements Serializable {
         this.type = type;
     }
 
-    public MembershipType() {
-        this.membership_id = membership_id;
-        this.type = type;
-    }
 }

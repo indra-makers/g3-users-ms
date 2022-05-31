@@ -15,7 +15,7 @@ class MembershipRowMapper implements RowMapper<MembershipType> {
     @Override
     public MembershipType mapRow(ResultSet rs, int rowNum) throws SQLException {
         MembershipType membershipType = new MembershipType();
-        membershipType.setMembership_id(rs.getLong("membership_id"));
+        membershipType.setMembershipId(rs.getLong("membership_id"));
         membershipType.setType(rs.getString("type"));
         return membershipType;
     }
