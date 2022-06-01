@@ -88,9 +88,8 @@ public class UserControllerTest {
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
         Assertions.assertEquals(200, response.getStatus());
 
-        User[] users = objectMapper.readValue(response.getContentAsString(), User[].class);
-        Assertions.assertEquals(1, users.length);
-        Assertions.assertEquals("Test_username", users[0].getName());
+        User users = objectMapper.readValue(response.getContentAsString(), User.class);
+        Assertions.assertEquals("Test_username", users.getName());
     }
 
     @Test

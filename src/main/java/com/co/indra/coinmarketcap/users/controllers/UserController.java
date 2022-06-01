@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping(Routes.USER_PATH_PARAM)
-    public List<User> getUser(@PathVariable("idUser") int idUser){
+    public User getUser(@PathVariable("idUser") int idUser){
         return userService.getUser(idUser);
     }
 }
