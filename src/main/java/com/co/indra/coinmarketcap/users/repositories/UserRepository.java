@@ -45,7 +45,7 @@ public class UserRepository {
     public List<User> findUserById(int idUser) {
         return template.query(
                 "SELECT id_user, name, mail, membership_id FROM tbl_users WHERE id_user=?",
-                new UserRowMapper() ,
+                new UserRowMapper(),
                 idUser);
     }
 }
