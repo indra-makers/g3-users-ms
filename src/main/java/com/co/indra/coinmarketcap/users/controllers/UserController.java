@@ -15,17 +15,18 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    @CrossOrigin
     @PostMapping
     public void create(@RequestBody User user) {
         userService.createUser(user);
     }
 
+    @CrossOrigin
     @GetMapping(Routes.USER_PATH_PARAM)
     public User getUser(@PathVariable("idUser") int idUser){
         return userService.getUser(idUser);
     }
-
+    @CrossOrigin
     @GetMapping
     public List<User> getUsers(){
         return userService.getUsers();
