@@ -25,4 +25,9 @@ public class UserController {
     public User getUser(@PathVariable("idUser") int idUser){
         return userService.getUser(idUser);
     }
+
+    @GetMapping
+    public List<User> getUsers(){
+        return userService.getUsers();
+    }
 }

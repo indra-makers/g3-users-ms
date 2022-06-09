@@ -23,6 +23,10 @@ public class UserService {
         userRepository.createUser(user);
     }
 
+    public List<User> getUsers(){
+        return userRepository.findUsers();
+    }
+
     public User getUser(int idUser){
         if(userRepository.findUserById(idUser).isEmpty()){
             throw new NotFoundException(ErrorCodes.USER_NOT_FOUND.getMessage());
