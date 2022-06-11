@@ -1,6 +1,5 @@
 package com.co.indra.coinmarketcap.users.services;
 
-
 import com.co.indra.coinmarketcap.users.config.ErrorCodes;
 import com.co.indra.coinmarketcap.users.exceptions.BusinessExceptions;
 import com.co.indra.coinmarketcap.users.model.MembershipType;
@@ -13,10 +12,10 @@ import java.util.List;
 
 @Service
 public class MembershipTypeService {
-    @Autowired
-    private MembershipTypeRepository membershipTypeRepository;
+   @Autowired
+   private MembershipTypeRepository membershipTypeRepository;
 
-    public List<MembershipType> getMembership() {
-        return  membershipTypeRepository.findAll();
-    }
+   public List<MembershipType> getMembership() {
+      return membershipTypeRepository.findAll();
+   }
 }

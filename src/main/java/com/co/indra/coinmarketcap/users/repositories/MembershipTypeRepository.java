@@ -12,23 +12,21 @@ import java.sql.SQLException;
 import java.util.List;
 
 class MembershipRowMapper implements RowMapper<MembershipType> {
-    @Override
-    public MembershipType mapRow(ResultSet rs, int rowNum) throws SQLException {
-        MembershipType membershipType = new MembershipType();
-        membershipType.setMembershipId(rs.getLong("membership_id"));
-        membershipType.setType(rs.getString("type"));
-        return membershipType;
-    }
+   @Override
+   public MembershipType mapRow(ResultSet rs, int rowNum) throws SQLException {
+      MembershipType membershipType = new MembershipType();
+      membershipType.setMembershipId(rs.getLong("membership_id"));
+      membershipType.setType(rs.getString("type"));
+      return membershipType;
+   }
 }
+
 @Repository
 public class MembershipTypeRepository {
-    @Autowired
-    private JdbcTemplate template;
+   @Autowired
+   private JdbcTemplate template;
 
-    public List<MembershipType> findAll() {
-        return template.query(
-                "SELECT membership_id, type  FROM tbl_membership_types",
-                new MembershipRowMapper());
-    }
+   public List<MembershipType> findAll() {
+      return template.query("SELECT membership_id, type  FROM tbl_membership_types", new MembershipRowMapper());
+   }
 }
-

@@ -22,33 +22,32 @@ import org.springframework.web.util.NestedServletException;
 
 import javax.transaction.Transactional;
 
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @SpringBootTest
 @AutoConfigureMockMvc
-@Transactional  //por cada test hace un rollback
+@Transactional // por cada test hace un rollback
 public class MembershipControllerTest {
-    @Autowired
-    private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-    @Autowired
-    private MembershipTypeRepository membershipTypeRepository;
+   @Autowired
+   private MembershipTypeRepository membershipTypeRepository;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+   @Autowired
+   private ObjectMapper objectMapper;
 
-    @Test
-    public void getMembership() throws Exception {
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .get(Routes.MEMBERSHIP_PATH)
-                .contentType(MediaType.APPLICATION_JSON);
+   @Test
+   public void getMembership() throws Exception {
+      MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(Routes.MEMBERSHIP_PATH)
+            .contentType(MediaType.APPLICATION_JSON);
 
-        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
-        Assertions.assertEquals(200, response.getStatus());
+      MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+      Assertions.assertEquals(200, response.getStatus());
 
-        List<MembershipType> users = membershipTypeRepository.findAll();
-        Assertions.assertEquals(3, users.size());
-    }
+      List<MembershipType> users = membershipTypeRepository.findAll();
+      Assertions.assertEquals(3, users.size());
+   }
 }

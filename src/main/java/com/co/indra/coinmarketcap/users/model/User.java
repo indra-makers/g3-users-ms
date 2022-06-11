@@ -3,51 +3,63 @@ package com.co.indra.coinmarketcap.users.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private int userId;
-    private String name;
-    private String mail;
-    private Long idMembership;
+   private int userId;
+   private String name;
+   private String mail;
+   private String phone;
+   private Long idMembership;
 
-    public int getUserId() {
-        return userId;
-    }
+   public User() {
+   }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+   public User(int userId,String name, String mail,String phone, Long idMembership) {
+      this.userId = userId;
+      this.name = name;
+      this.mail = mail;
+      this.phone = phone;
+      this.idMembership = idMembership;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public int getUserId() {
+      return userId;
+   }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+   public void setUserId(int userId) {
+      this.userId = userId;
+   }
 
-    public String getMail() {
-        return mail;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
+   public void setName(String name) {
+      this.name = name;
+   }
 
-    public Long getIdMembership() {
-        return idMembership;
-    }
+   public String getMail() {
+      return mail;
+   }
 
-    public void setIdMembership(Long idMembership) {
-        this.idMembership = idMembership;
-    }
+   public void setMail(String mail) {
+      this.mail = mail;
+   }
+   
+   
 
-    public User(int userId, String name, String mail, Long idMembership) {
-        this.userId = userId;
-        this.name = name;
-        this.mail = mail;
-        this.idMembership = idMembership;
-    }
+   public String getPhone() {
+      return phone;
+   }
 
-    public User() {
-    }
+   public void setPhone(String phone) {
+      this.phone = phone;
+   }
+
+   public Long getIdMembership() {
+      return idMembership;
+   }
+
+   public void setIdMembership(Long idMembership) {
+      this.idMembership = idMembership;
+   }
 
 }

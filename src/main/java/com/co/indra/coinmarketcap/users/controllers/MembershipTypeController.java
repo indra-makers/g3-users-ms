@@ -13,11 +13,11 @@ import java.util.List;
 @RestController
 @RequestMapping(Routes.MEMBERSHIP_PATH)
 public class MembershipTypeController {
-    @Autowired
-    private MembershipTypeService membershipTypeService;
+   @Autowired
+   private MembershipTypeService membershipTypeService;
 
-    @GetMapping
-    public List<MembershipType> getMembershipByUser() {
-        return membershipTypeService.getMembership();
-    }
+   @GetMapping
+   public List<MembershipType> getMembershipByUser() {
+      return membershipTypeService.getMembership();
+   }
 }

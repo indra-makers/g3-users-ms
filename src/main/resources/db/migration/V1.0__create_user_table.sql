@@ -7,5 +7,6 @@ create table public.tbl_users(
     membership_id bigint NOT NULL,
     name varchar(255) NOT NULL,
     mail varchar(255) NOT NULL,
+    phone varchar(255) NOT NULL,
     CONSTRAINT fk_membership_id FOREIGN KEY (membership_id) REFERENCES tbl_membership_types(membership_id)
 );

@@ -17,25 +17,18 @@ import java.util.Collections;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(
-                        RequestHandlerSelectors
-                                .basePackage("com.co.indra.coinmarketcap.users.controllers"))
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(apiInfo());
-    }
+   @Bean
+   public Docket api() {
+      return new Docket(DocumentationType.SWAGGER_2).select()
+            .apis(RequestHandlerSelectors.basePackage("com.co.indra.coinmarketcap.users.controllers"))
+            .paths(PathSelectors.any()).build().apiInfo(apiInfo());
+   }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfo(
-                "Api Users G3",
-                "This api contains the information of a user with its respective category, it is expected to be used in other modules.",
-                "API v1",
-                "Terms of service",
-                new Contact("Julian G", "https://github.com/dernaut", "giraldocardonajulian@gmail.com"),
-                "License of API", "API license URL", Collections.emptyList());
-    }
+   private ApiInfo apiInfo() {
+      return new ApiInfo("Api Users G3",
+            "This api contains the information of a user with its respective category, it is expected to be used in other modules.",
+            "API v1", "Terms of service",
+            new Contact("Julian G", "https://github.com/dernaut", "giraldocardonajulian@gmail.com"), "License of API",
+            "API license URL", Collections.emptyList());
+   }
 }
