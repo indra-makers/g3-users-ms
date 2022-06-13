@@ -100,9 +100,10 @@ public class UserControllerTest {
     }
 
     @Test
+    @Sql("/testdata/create_user.sql")
     public void getNoUserById() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .get(Routes.USERS_PATH+Routes.USER_PATH_PARAM,666).contentType(MediaType.APPLICATION_JSON);
+                .get(Routes.USERS_PATH+Routes.USER_PATH_PARAM,1).contentType(MediaType.APPLICATION_JSON);
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
         Assertions.assertEquals(404, response.getStatus());
