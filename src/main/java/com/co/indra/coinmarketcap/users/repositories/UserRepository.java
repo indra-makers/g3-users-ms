@@ -31,8 +31,8 @@ public class UserRepository {
     private JdbcTemplate template;
 
     public void createUser (User user) {
-        template.update("INSERT INTO tbl_users(name, mail, membership_id) values(?,?,?)",
-                user.getName(),  user.getMail(), user.getIdMembership());
+        template.update("INSERT INTO tbl_users(name, mail, phone, membership_id) values(?,?,?,?)",
+                user.getName(),  user.getMail(), user.getPhone(), user.getIdMembership());
     }
 
     public List<User> findByMail(String name) {
