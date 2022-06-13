@@ -21,6 +21,7 @@ class UserRowMapper implements RowMapper<User> {
         user.setUserId(rs.getLong("id_user"));
         user.setName(rs.getString("name"));
         user.setMail(rs.getString("mail"));
+        user.setPhone(rs.getString("phone"));
         user.setIdMembership(rs.getLong("membership_id"));
         return user;
     }
@@ -31,8 +32,8 @@ public class UserRepository {
     private JdbcTemplate template;
 
     public void createUser (User user) {
-        template.update("INSERT INTO tbl_users(name, mail, membership_id) values(?,?,?)",
-                user.getName(),  user.getMail(), user.getIdMembership());
+        template.update("INSERT INTO tbl_users(name, mail, phone, membership_id) values(?,?,?,?)",
+                user.getName(),  user.getMail(), user.getPhone(), user.getIdMembership());
     }
 
     public List<User> findByMail(String name) {
