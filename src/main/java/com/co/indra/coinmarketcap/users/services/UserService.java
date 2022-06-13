@@ -6,6 +6,7 @@ import com.co.indra.coinmarketcap.users.exceptions.NotFoundException;
 import com.co.indra.coinmarketcap.users.model.User;
 import com.co.indra.coinmarketcap.users.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class UserService {
         }
         userRepository.createUser(user);
     }
-
+    @Cacheable(value="user",cacheManager = "expire30Mins", key = "#idUser", unless="#result == null")
     public User getUser(int idUser){
         if(userRepository.findUserById(idUser).isEmpty()){
             throw new NotFoundException(ErrorCodes.USER_NOT_FOUND.getMessage());

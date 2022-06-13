@@ -2,29 +2,30 @@ package com.co.indra.coinmarketcap.users.controllers;
 
 import com.co.indra.coinmarketcap.users.config.Routes;
 import com.co.indra.coinmarketcap.users.model.User;
-import com.co.indra.coinmarketcap.users.repositories.MembershipTypeRepository;
 import com.co.indra.coinmarketcap.users.repositories.UserRepository;
 import com.co.indra.coinmarketcap.users.responses.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.util.NestedServletException;
+
 
 import javax.transaction.Transactional;
 
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional  //por cada test hace un rollback
@@ -38,8 +39,14 @@ public class UserControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    
     @Autowired
-    private MembershipTypeRepository membershipTypeRepository;
+    private RedisConnection redisConnection;
+
+    @BeforeEach
+    public void beforeEach() {
+        redisConnection.flushAll();
+    }
 
     @Test
     public void createUserHappyPath() throws Exception {

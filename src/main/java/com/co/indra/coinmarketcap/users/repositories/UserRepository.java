@@ -1,6 +1,5 @@
 package com.co.indra.coinmarketcap.users.repositories;
 
-import com.co.indra.coinmarketcap.users.model.MembershipType;
 import com.co.indra.coinmarketcap.users.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 
@@ -42,6 +39,7 @@ public class UserRepository {
                 name);
     }
 
+    
     public List<User> findUserById(int idUser) {
         return template.query(
                 "SELECT id_user, name, mail, membership_id FROM tbl_users WHERE id_user=?",
