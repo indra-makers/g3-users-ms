@@ -24,25 +24,32 @@ class UserRowMapper implements RowMapper<User> {
 
 @Repository
 public class UserRepository {
-	@Autowired
-	private JdbcTemplate template;
 
-	public void createUser(User user) {
-		template.update("INSERT INTO tbl_users(name, mail, membership_id) values(?,?,?)", user.getName(), user.getMail(),
-				user.getIdMembership());
-	}
+    @Autowired
+    private JdbcTemplate template;
 
-	public List<User> findByMail(String name) {
-		return template.query("SELECT id_user, name, mail, membership_id FROM tbl_users WHERE mail=?",
-				new UserRowMapper(), name);
-	}
+    public void createUser (User user) {
+        template.update("INSERT INTO tbl_users(name, mail, phone, membership_id) values(?,?,?,?)",
+                user.getName(),  user.getMail(), user.getPhone(), user.getIdMembership());
+    }
 
-	public List<User> findUserById(int idUser) {
-		return template.query("SELECT id_user, name, mail, membership_id FROM tbl_users WHERE id_user=?",
-				new UserRowMapper(), idUser);
-	}
+    public List<User> findByMail(String name) {
+        return template.query(
+                "SELECT id_user, name, mail, membership_id FROM tbl_users WHERE mail=?",
+                new UserRowMapper() ,
+                name);
+    }
 
-	public List<User> findUsers() {
-		return template.query("SELECT id_user, name, mail, membership_id FROM tbl_users", new UserRowMapper());
-	}
+    public List<User> findUserById(int idUser) {
+        return template.query(
+                "SELECT id_user, name, mail, membership_id FROM tbl_users WHERE id_user=?",
+                new UserRowMapper(),
+                idUser);
+    }
+
+    public List<User> findUsers() {
+        return template.query(
+                "SELECT id_user, name, mail, membership_id FROM tbl_users",
+                new UserRowMapper());
+    }
 }
