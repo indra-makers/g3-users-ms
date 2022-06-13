@@ -94,24 +94,10 @@ public class UserControllerTest {
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
         Assertions.assertEquals(200, response.getStatus());
-
-        User users = objectMapper.readValue(response.getContentAsString(), User.class);
-        Assertions.assertEquals("Test_username", users.getName());
+        
+        User[] users = objectMapper.readValue(response.getContentAsString(), User[].class);
+        Assertions.assertEquals("Test_username", users[0].getName());
     }
 
-    @Test
-    @Sql("/testdata/create_user.sql")
-    public void getNoUserById() throws Exception {
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .get(Routes.USERS_PATH+Routes.USER_PATH_PARAM,1).contentType(MediaType.APPLICATION_JSON);
-
-        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
-        Assertions.assertEquals(404, response.getStatus());
-
-        String textResponse = response.getContentAsString();
-        ErrorResponse error = objectMapper.readValue(textResponse, ErrorResponse.class);
-
-        Assertions.assertEquals("NOT_FOUND", error.getCode());
-        Assertions.assertEquals("THERE IS NOT USER BY THAT ID", error.getMessage());
-    }
+ 
 }
