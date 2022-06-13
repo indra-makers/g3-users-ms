@@ -24,10 +24,9 @@ public class UserService {
         userRepository.createUser(user);
     }
     @Cacheable(value="user",cacheManager = "expire30Mins", key = "#idUser", unless="#result == null")
-    public User getUser(int idUser){
-        if(userRepository.findUserById(idUser).isEmpty()){
-            throw new NotFoundException(ErrorCodes.USER_NOT_FOUND.getMessage());
-        }
-        return userRepository.findUserById(idUser).get(0);
+    public List<User> getUsers(){
+        return userRepository.findUsers();
     }
+
+
 }

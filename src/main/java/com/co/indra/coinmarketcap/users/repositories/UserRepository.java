@@ -46,5 +46,11 @@ public class UserRepository {
                 new UserRowMapper(),
                 idUser);
     }
+
+    public List<User> findUsers() {
+        return template.query(
+                "SELECT id_user, name, mail, membership_id FROM tbl_users",
+                new UserRowMapper());
+    }
 }
 
