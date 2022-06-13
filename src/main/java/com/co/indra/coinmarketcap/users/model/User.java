@@ -6,6 +6,8 @@ public class User implements Serializable {
     private int userId;
     private String name;
     private String mail;
+
+    private String phone;
     private Long idMembership;
 
     public int getUserId() {
@@ -36,14 +38,23 @@ public class User implements Serializable {
         return idMembership;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
     public void setIdMembership(Long idMembership) {
         this.idMembership = idMembership;
     }
 
-    public User(int userId, String name, String mail, Long idMembership) {
+    public User(int userId, String name, String mail, String phone, Long idMembership) {
         this.userId = userId;
         this.name = name;
         this.mail = mail;
+        this.phone = phone;
         this.idMembership = idMembership;
     }
 
