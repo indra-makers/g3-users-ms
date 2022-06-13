@@ -2,7 +2,6 @@ package com.co.indra.coinmarketcap.users.services;
 
 import com.co.indra.coinmarketcap.users.config.ErrorCodes;
 import com.co.indra.coinmarketcap.users.exceptions.BusinessExceptions;
-import com.co.indra.coinmarketcap.users.exceptions.NotFoundException;
 import com.co.indra.coinmarketcap.users.model.User;
 import com.co.indra.coinmarketcap.users.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,8 @@ public class UserService {
         userRepository.createUser(user);
     }
     @Cacheable(value="user",cacheManager = "expire30Mins", key = "#idUser", unless="#result == null")
-    public List<User> getUsers(){
-        return userRepository.findUsers();
+    public List<User> getUsers(int idUser){
+        return userRepository.findUserById(idUser);
     }
 
 
