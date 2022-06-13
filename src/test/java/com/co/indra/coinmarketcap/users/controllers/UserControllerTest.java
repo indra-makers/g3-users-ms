@@ -53,9 +53,10 @@ public class UserControllerTest {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post(Routes.USERS_PATH)
                 .content("{\n" +
-                        "    \"name\":\"yosoyyo\",\n" +
-                        "    \"mail\":\"yosoyyo2@gmail.com\",\n" +
-                        "    \"idMembership\":\"2\"  \n" +
+                        "    \"name\": \"julian\",\n" +
+                        "    \"mail\": \"julian.giraldo2@utp.edu.co\",\n" +
+                        "    \"phone\": \"+573147976714\",\n" +
+                        "    \"idMembership\": 1\n" +
                         "}").contentType(MediaType.APPLICATION_JSON);
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
@@ -71,9 +72,10 @@ public class UserControllerTest {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post(Routes.USERS_PATH)
                 .content("{\n" +
-                        "    \"name\":\"yosoyyo\",\n" +
-                        "    \"mail\":\"test_usermail\",\n" +
-                        "    \"idMembership\":\"2\"  \n" +
+                        "    \"name\": \"julian\",\n" +
+                        "    \"mail\": \"julian.giraldo2@utp.edu.co\",\n" +
+                        "    \"phone\": \"+573147976714\",\n" +
+                        "    \"idMembership\": 1\n" +
                         "}").contentType(MediaType.APPLICATION_JSON);
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
