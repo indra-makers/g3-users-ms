@@ -8,23 +8,25 @@ import com.co.indra.coinmarketcap.users.responses.ErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.util.NestedServletException;
+
 
 import javax.transaction.Transactional;
 
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional  //por cada test hace un rollback
@@ -41,8 +43,12 @@ public class UserControllerTest {
     @Autowired
     private MembershipTypeRepository membershipTypeRepository;
 
+    @MockBean
+    private RabbitTemplate rabbitTemplate;
+
     @Test
     public void createUserHappyPath() throws Exception {
+
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post(Routes.USERS_PATH)
                 .content("{\n" +
@@ -55,7 +61,7 @@ public class UserControllerTest {
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
         Assertions.assertEquals(200, response.getStatus());
 
-        List<User> users = userRepository.findByMail("yosoyyo2@gmail.com");
+        List<User> users = userRepository.findByMail("julian.giraldo2@utp.edu.co");
         Assertions.assertEquals(1, users.size());
     }
 
