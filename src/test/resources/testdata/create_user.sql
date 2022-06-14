@@ -1,1 +1,1 @@
-INSERT INTO public.tbl_users(id_user, name, mail, phone, membership_id) VALUES (666, 'Test_username', 'test_usermail', '+5723424', 1)
+INSERT INTO public.tbl_users(id_user, name, mail, phone, membership_id) VALUES (666, 'Test_username', 'julian.giraldo2@utp.edu.co', '+5723424', 1)

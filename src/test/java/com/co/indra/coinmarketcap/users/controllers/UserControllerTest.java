@@ -8,10 +8,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.jdbc.Sql;
@@ -48,8 +50,12 @@ public class UserControllerTest {
         redisConnection.flushAll();
     }
 
+    @MockBean
+    private RabbitTemplate rabbitTemplate;
+
     @Test
     public void createUserHappyPath() throws Exception {
+
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post(Routes.USERS_PATH)
                 .content("{\n" +
@@ -62,7 +68,7 @@ public class UserControllerTest {
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
         Assertions.assertEquals(200, response.getStatus());
 
-        List<User> users = userRepository.findByMail("yosoyyo2@gmail.com");
+        List<User> users = userRepository.findByMail("julian.giraldo2@utp.edu.co");
         Assertions.assertEquals(1, users.size());
     }
 
