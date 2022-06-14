@@ -19,6 +19,7 @@ public class UserService {
     @Autowired
     private UsersProducer usersProducer;
 
+
 	@Cacheable(value = "user", cacheManager = "expire30Mins", key = "#idUser", unless = "#result == null")
 	public User getUserCache(int idUser) {
 		List<User> user = userRepository.findUserById(idUser);
