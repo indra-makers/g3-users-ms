@@ -53,8 +53,6 @@ public class UserControllerTest {
     @MockBean
     private RabbitTemplate rabbitTemplate;
 
-    @MockBean
-    private RabbitTemplate rabbitTemplate;
 
     @Test
     public void createUserHappyPath() throws Exception {
