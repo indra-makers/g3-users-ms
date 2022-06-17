@@ -18,7 +18,7 @@ public class UsersProducer {
     public void sendUsers(User user) {
         try {
             String message = objectMapper.writeValueAsString(user);
-            rabbitTemplate.convertAndSend("g3-users-ms", message);
+            rabbitTemplate.convertAndSend("user_notification_data", message);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
