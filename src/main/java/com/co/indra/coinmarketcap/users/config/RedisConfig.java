@@ -24,7 +24,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @EnableCaching
 public class RedisConfig {
 
-	@Value("${spring.redis.host}")
+	@Value("${spring.redis.end.point}")
 	private String host;
 
 	@Value("${spring.redis.port}")
@@ -41,8 +41,8 @@ public class RedisConfig {
 		JedisClientConfiguration jedisClientConfiguration = JedisClientConfiguration.builder()
 				.connectTimeout(Duration.ofSeconds(30)).usePooling().build();
 
-		RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(host, port);
-		config.setPassword(user);
+
+		RedisStandaloneConfiguration config = new RedisStandaloneConfiguration(host);
 		config.setUsername(password);
 
 		return new JedisConnectionFactory(config, jedisClientConfiguration);
